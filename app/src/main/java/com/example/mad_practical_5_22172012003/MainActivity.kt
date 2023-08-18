@@ -4,7 +4,9 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.AlarmClock
 import android.provider.CallLog
+import android.provider.MediaStore
 import android.widget.Button
 import android.widget.EditText
 
@@ -23,9 +25,20 @@ class MainActivity : AppCompatActivity() {
         Intent(Intent.ACTION_VIEW, Uri.parse(url)).also { startActivity(it) }
     }
     fun PhoneNo(No:String){
-        Intent(Intent.ACTION_DIAL).setData(Uri.parse("tel:$Num")).also { startActivity(it) }
+        Intent(Intent.ACTION_DIAL).setData(Uri.parse("tel:$No")).also { startActivity(it) }
     }
-    fun openCallLog(){
+    fun openCallLog(Call:String){
+        Intent(Intent.ACTION_VIEW).setType(CallLog.Calls.CONTENT_TYPE).also { startActivity(it) }
+    }
+    fun openGallery(){
+     Intent(Intent.ACTION_VIEW).setType("image/*").also { startActivity(it) }
+    }
+    fun openCamera(){
+        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { startActivity(it) }
+
+    }
+    fun setAlarm(){
+        Intent(AlarmClock.ACTION_SHOW_ALARMS).also { startActivity(it) }
     }
 
 }
